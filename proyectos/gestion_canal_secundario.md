@@ -27,6 +27,9 @@ Este proyecto se centró en identificar y analizar a los clientes que compraban 
 * **Análisis de Datos:** Identificación de patrones de compra y perfiles de clientes de reventa.
 * **Herramientas:** SQL (para extracción y transformación).
 
+## 🛠️ Impacto y Resultados
+El informe resultante permitió al equipo de ventas y gerencia tomar decisiones informadas sobre cómo enfocar sus esfuerzos hacia este canal, optimizando la asignación de recursos y mejorando la gestión de stock de vehículos usados. Este proyecto transformó datos dispersos en inteligencia de mercado accionable.
+
 ## 💻 Consulta SQL Utilizada
 
 ```sql
@@ -64,3 +67,4 @@ WHERE
     Preventas."Fecha" >= {ts '2022-01-01 00:00:00.00'} AND
     Preventas."Fecha" < {ts '2030-11-10 00:00:00.00'} AND
     Preventas."Anulada" = 0;
+
