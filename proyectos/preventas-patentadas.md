@@ -56,7 +56,9 @@ FROM
     LEFT OUTER JOIN "SAI"."dbo"."Familias" Familias ON Modelos."Familia" = Familias."FamiliaID")
     LEFT OUTER JOIN "Origenes" Origenes ON Modelos."Origen" = Origenes."OrigenID"}
 -- Considerar añadir una cláusula WHERE si se necesita filtrar por fecha u otros criterios relevantes para el análisis.
-📐 Medidas DAX Utilizadas
+---
+
+📐Medidas DAX Utilizadas
 Fragmento de código
 
 // Promedio de Edad de Clientes de Preventas (entre 25 y 65 años)

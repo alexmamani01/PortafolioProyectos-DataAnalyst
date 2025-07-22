@@ -63,7 +63,6 @@ calendario = ADDCOLUMNS (
     "Año/trimestre", FORMAT ( [Date], "YYYY" ) & "/Q" & FORMAT ( [Date], "Q")
 )
 
-// Ejemplos de posibles medidas DAX para este reporte:
 
 // Total de Leads Asignados
 Total Leads Asignados = COUNTROWS('TablaGeneralLeadsVentasBajas') // Asumiendo una tabla general donde se anexan los leads
