@@ -32,7 +32,10 @@ Este proyecto se dividió en dos componentes principales:
 * **Análisis de Tendencias:** Aplicación de funciones de tiempo en DAX para comparar períodos y calcular variaciones porcentuales año contra año.
 * **KPIs y Métricas de Negocio:** Desarrollo de medidas DAX para cuantificar el desempeño de ventas y la variación.
 * **Herramientas:** SQL (para extracción y unión de datos), Power BI (para modelado y DAX).
-
+---
+ ## 📊 Impacto y Resultados
+Este proyecto permitió a la gerencia del grupo evaluar el rendimiento general de las ventas de preventas, identificar tendencias de mercado y tomar decisiones estratégicas sobre inventario, campañas de marketing y objetivos de ventas. La capacidad de comparar el desempeño año tras año fue crucial para la planificación y el ajuste de la estrategia comercial.
+---
 ## 💻 Consultas SQL Utilizadas (Extractos)
 
 **Para Preventas:**
@@ -66,6 +69,60 @@ FROM
 WHERE
     Preventas."Fecha" >= {ts '2000-01-01 00:00:00.00'} AND
     Preventas."Fecha" < {ts '2030-11-10 00:00:00.00'};
+
+
+     **Para Unidades**
+     SELECT
+    Unidades."Pedido", Unidades."FechaDePedido", Unidades."FechaDeRecepcion", Unidades."Posicion", Unidades."VIN", Unidades."IDFabrica", Unidades."UnidadActiva", Unidades."Patente", Unidades."Responsable", Unidades."Status", Unidades."StatusFec", Unidades."Factura", Unidades."Entregada", Unidades."Facturada", Unidades."Confirmada", Unidades."FacturaCompra", Unidades."ReservaDia", Unidades."ReservaCliente", Unidades."ReservaUsuario", Unidades."ReservaDiaVence", Unidades."FechaPatentamiento", Unidades."UnidadTipo", Unidades."OrdenDeEmbarqueFecha", Unidades."FechaFacturaTerminal", Unidades."FacturaFecha",
+    Preventas."Numero" AS "NumeroPreventa", Preventas."Fecha" AS "FechaPreventa",
+    Ubicaciones."Descripcion" AS "DescripcionUbicacion",
+    Modelos."DescripcionOperativa" AS "ModeloOperativa",
+    Colores."Descripcion" AS "Color",
+    PlanAhorroSolicitudes."Titular",
+    Origenes."Nombre" AS "Origen",
+    TipoVenta."Descripcion" AS "TipoDeVenta",
+    Vendedores."Nombre" AS "NombreVendedorPreventa", Vendedores."Jefe",
+    Vendedores_1."Nombre" AS "NombreVendedorPlanAhorro",
+    SucursalesDeventa."Nombre" AS "SucursalVenta",
+    Clientes."Nombre" AS "NombreCliente", Clientes."Localidad", Clientes."Provincia",
+    Familias."Nombre" AS "FamiliaModelo"
+FROM
+    { oj ((((((((((("Unidades" Unidades LEFT OUTER JOIN "Modelos" Modelos ON Unidades."Modelo" = Modelos."Modelo")
+    LEFT OUTER JOIN "SAI"."dbo"."Ubicaciones" Ubicaciones ON Unidades."Ubicacion" = Ubicaciones."UbicacionID")
+    LEFT OUTER JOIN "SAI"."dbo"."PlanAhorroSolicitudes" PlanAhorroSolicitudes ON Unidades."UnidadID" = PlanAhorroSolicitudes."UnidadID")
+    LEFT OUTER JOIN "Preventas" Preventas ON Unidades."Preventa" = Preventas."Numero")
+    LEFT OUTER JOIN "SAI"."dbo"."Colores" Colores ON Unidades."Color" = Colores."ColorID")
+    LEFT OUTER JOIN "TipoVenta" TipoVenta ON Preventas."TipoDeVentaID" = TipoVenta."TipoDeVentaID")
+    LEFT OUTER JOIN "SAI"."dbo"."Vendedores" Vendedores ON Preventas."VendedorID" = Vendedores."VendedorId")
+    LEFT OUTER JOIN "SAI"."dbo"."Vendedores" Vendedores_1 ON PlanAhorroSolicitudes."CodVendedor" = Vendedores_1."VendedorId")
+    LEFT OUTER JOIN "SAI"."dbo"."SucursalesDeventa" SucursalesDeventa ON Preventas."Sucursal" = SucursalesDeventa."Numero")
+    LEFT OUTER JOIN "Clientes" Clientes ON Preventas."Cliente" = Clientes."Codigo")
+    LEFT OUTER JOIN "SAI"."dbo"."Familias" Familias ON Modelos."Familia" = Familias."FamiliaID")
+    LEFT OUTER JOIN "Origenes" Origenes ON Modelos."Origen" = Origenes."OrigenID"}
+WHERE
+    Unidades."FechaDePedido" > {ts '2020-01-01 00:00:00.00'};
+
+    **Para Usados**
+    SELECT
+    Usados."Color", Usados."Anio", Usados."Patente", Usados."PrecioDeToma", Usados."PrecioDeVenta", Usados."FechaDeIngreso", Usados."PreVentaOrigen", Usados."FechaDeVenta", Usados."Preventa", Usados."KM", Usados."Marca", Usados."Modelo", Usados."Estado",Usados."Nombre" AS "NombreUsado",
+    Ubicaciones."Descripcion" AS "UbicacionUsado",
+    UsadosPeritajes."Importe" AS "ImportePeritaje",
+    VariablesPorUnidad."Valor" AS "ValorVariableUnidad",
+    Clientes."Nombre" AS "NombreCliente",
+    Vendedores."Nombre" AS "NombreVendedor",
+    TipoVenta."Descripcion" AS "TipoDeVenta",
+    Variables."Nombre" AS "NombreVariable"
+FROM
+    { oj ((((((("SAI"."dbo"."Usados" Usados LEFT OUTER JOIN "SAI"."dbo"."UsadosPeritajes" UsadosPeritajes ON Usados."UsadoID" = UsadosPeritajes."UsadoID")
+    LEFT OUTER JOIN "SAI"."dbo"."VariablesPorUnidad" VariablesPorUnidad ON Usados."UsadoID" = VariablesPorUnidad."UsadoID")
+    LEFT OUTER JOIN "SAI"."dbo"."Preventas" Preventas ON Usados."Preventa" = Preventas."Numero")
+    LEFT OUTER JOIN "Ubicaciones" Ubicaciones ON Usados."Ubicacion" = Ubicaciones."UbicacionID")
+    LEFT OUTER JOIN "SAI"."dbo"."Vendedores" Vendedores ON Preventas."VendedorID" = Vendedores."VendedorId")
+    LEFT OUTER JOIN "SAI"."dbo"."TipoVenta" TipoVenta ON Preventas."TipoDeVentaID" = TipoVenta."TipoDeVentaID")
+    LEFT OUTER JOIN "SAI"."dbo"."Variables" Variables ON VariablesPorUnidad."VariableID" = Variables."VariableID")
+    LEFT OUTER JOIN "SAI"."dbo"."Clientes" Clientes ON Preventas."Cliente" = Clientes."Codigo"}
+WHERE
+    Usados."Estado" <> 'Desactivado';
 
 
     MEDIDAS DAX UTILIZADAS
