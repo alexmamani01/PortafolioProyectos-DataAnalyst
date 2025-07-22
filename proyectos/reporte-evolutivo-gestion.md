@@ -1,8 +1,3 @@
----
-
-#### **`proyectos/reporte_evolutivo_gestion.md`**
-
-```markdown
 # Proyecto: Reporte Evolutivo de Gestión (Performance de Call Center)
 
 **Rol:** Data Analyst
@@ -36,6 +31,21 @@ Este reporte consiste en un dashboard interactivo diseñado en Power BI para el 
 * **Diseño de Dashboard:** Creación de un dashboard intuitivo con filtros dinámicos (sucursal, tipo de negocio, vendedor, origen de *lead*, suborigen) para facilitar el análisis gerencial.
 * **Manejo de Grandes Volúmenes de Datos:** Trabajo con aproximadamente 200,000 registros en el período Enero 2023 - Marzo 2024.
 * **Herramientas:** CRM Pilot Solutions, SharePoint, Power BI (incluyendo DAX para cálculos).
+---
+✨ Impacto y Resultados
+Este dashboard empoderó a los gerentes de sucursal con una visión en tiempo real de la gestión de su call center, permitiéndoles:
+
+Identificar a los vendedores con mejor y peor desempeño.
+
+Analizar las causas de la baja de leads para tomar acciones correctivas.
+
+Optimizar la asignación de recursos y mejorar las estrategias de seguimiento.
+
+Incrementar la tasa de conversión de leads a ventas, lo que se tradujo en un impacto directo en los ingresos del grupo.
+
+Este proyecto es un claro ejemplo de cómo la transformación de datos en insights accionables puede conducir a una mejora significativa en la eficiencia operativa y los resultados comerciales.
+
+---
 
 ## 📐 Medidas DAX Clave Utilizadas
 

@@ -1,8 +1,3 @@
----
-
-#### **`proyectos/ventas_preventas_variacion.md`**
-
-```markdown
 # Proyecto: Informe de Boletos de Venta de Preventas y Variación de Ventas
 
 **Rol:** Data Analyst / Data Engineer Colaborador

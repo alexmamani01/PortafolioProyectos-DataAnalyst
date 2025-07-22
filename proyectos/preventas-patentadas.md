@@ -1,8 +1,7 @@
----
- **Proyecto: Preventas Patentadas y Análisis de Perfil de Cliente **
+# Proyecto: Preventas Patentadas y Análisis de Perfil de Cliente 
 
-**Rol:** Data Analyst
-**Contexto:** Informe de seguimiento del ciclo de vida de las ventas de vehículos y análisis demográfico de clientes.
+ **Rol:** Data Analyst
+ **Contexto:** Informe de seguimiento del ciclo de vida de las ventas de vehículos y análisis demográfico de clientes.
 
 ---
 
