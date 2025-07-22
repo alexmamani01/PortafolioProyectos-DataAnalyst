@@ -1,9 +1,5 @@
 ---
-
-#### **`proyectos/preventas_patentadas.md`**
-
-```markdown
-# Proyecto: Preventas Patentadas y Análisis de Perfil de Cliente (Actualizado Junio 2024)
+ **Proyecto: Preventas Patentadas y Análisis de Perfil de Cliente **
 
 **Rol:** Data Analyst
 **Contexto:** Informe de seguimiento del ciclo de vida de las ventas de vehículos y análisis demográfico de clientes.
@@ -31,6 +27,12 @@ Este informe se enfoca en analizar el flujo de preventas que efectivamente se tr
 * **Análisis Demográfico:** Cálculo de métricas como el promedio de edad de los clientes de preventas, con aplicación de filtros para asegurar la relevancia del análisis (ej. edad entre 25 y 65 años).
 * **KPIs y Métricas:** Definición y cálculo de indicadores clave para el seguimiento de la conversión y el perfil del cliente.
 * **Herramientas:** SQL (para extracción de datos), Power BI (para modelado y DAX).
+
+---
+✨ Impacto y Resultados
+Este proyecto proporcionó a los equipos de ventas y gerencia una visibilidad crítica del embudo de conversión y un entendimiento más profundo del perfil demográfico de sus clientes. Esto permitió la optimización de los procesos de venta, la identificación de puntos de fricción y el ajuste de las estrategias de marketing para mejorar la efectividad y la rentabilidad.
+
+---
 
 ## 💻 Consulta SQL Utilizada
 
