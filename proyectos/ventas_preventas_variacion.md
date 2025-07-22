@@ -120,7 +120,7 @@ WHERE
     Usados."Estado" <> 'Desactivado';
 
 
-    MEDIDAS DAX UTILIZADAS
+## MEDIDAS DAX UTILIZADAS
     // Cantidad de Preventas del mes anterior (año anterior)
 totalPVmes-1 = CALCULATE(DISTINCTCOUNT(TODAS[Numero]), DATEADD(Calendario[Date], -1, YEAR))
 

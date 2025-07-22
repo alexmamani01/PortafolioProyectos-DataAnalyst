@@ -1,4 +1,4 @@
-# Portafolio de Proyectos de Alex: Transformando Datos en Decisiones de Negocio
+# Portafolio de Proyectos -Alexandra Mamani: Transformando Datos en Decisiones de Negocio
 
 ¡Hola! Soy Alex, un **profesional de datos versátil** con experiencia en **análisis de datos** e **ingeniería de datos**, y en constante actualización a través de una **tecnicatura en programación**.
 
