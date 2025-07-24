@@ -10,7 +10,7 @@ Este repositorio presenta una selección de mis proyectos más relevantes, donde
 - **Análisis de Datos:** Identificación de patrones, tendencias y oportunidades.
 - **Ingeniería de Datos:** Extracción, transformación y carga (ETL), modelado de datos y gestión de bases de datos.
 - **Visualización de Datos:** Creación de dashboards intuitivos y reportes gerenciales.
-- **Herramientas:** SQL, Power BI (DAX), Excel, CRM (Pilot Solutions).
+- **Herramientas:** SQL, Power BI (DAX), Excel, CRM (Pilot Solutions), python
 - **Impacto en el Negocio:** Generación de valor a través de *insights* estratégicos.
 
 ¡Te invito a explorar mis proyectos y no dudes en conectar para explorar posibles oportunidades!
