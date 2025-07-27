@@ -25,6 +25,6 @@ Aquí puedes encontrar la documentación detallada de cada proyecto:
 * [**Informe de Boletos de Venta de Preventas y Variación de Ventas**](proyectos/ventas_preventas_variacion.md)
 * [**Preventas Patentadas y Análisis de Perfil de Cliente**](proyectos/preventas-patentadas.md)
 * [**Reporte Evolutivo de Gestión (Performance de Call Center)**](proyectos/reporte-evolutivo-gestion.md)
-* [**Reporte de Postventa**](proyectos/reporte-postventa.md)
+* [**Reporte de Postventa**](proyectos/reporte_postventa.md)
 
 ---

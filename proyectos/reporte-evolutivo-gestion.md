@@ -32,7 +32,7 @@ Este reporte consiste en un dashboard interactivo diseñado en Power BI para el 
 * **Manejo de Grandes Volúmenes de Datos:** Trabajo con aproximadamente 200,000 registros en el período Enero 2023 - Marzo 2024.
 * **Herramientas:** CRM Pilot Solutions, SharePoint, Power BI (incluyendo DAX para cálculos).
 ---
-✨ Impacto y Resultados
+## ✨ Impacto y Resultados
 Este dashboard empoderó a los gerentes de sucursal con una visión en tiempo real de la gestión de su call center, permitiéndoles:
 
 Identificar a los vendedores con mejor y peor desempeño.
