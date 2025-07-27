@@ -1,6 +1,6 @@
 # Proyecto: Gestión de Canal Secundario
 
-**Rol:** Data Analyst / Data Engineer Colaborador
+**Rol:** Data Analyst Colaborador / Data Engineer
 **Contexto:** Este proyecto se desarrolló para un grupo automotriz líder.
 
 ---
@@ -30,41 +30,55 @@ Este proyecto se centró en identificar y analizar a los clientes que compraban 
 ## 🛠️ Impacto y Resultados
 El informe resultante permitió al equipo de ventas y gerencia tomar decisiones informadas sobre cómo enfocar sus esfuerzos hacia este canal, optimizando la asignación de recursos y mejorando la gestión de stock de vehículos usados. Este proyecto transformó datos dispersos en inteligencia de mercado accionable.
 
-## 💻 Consulta SQL Utilizada
+## 💻 Consulta SQL Utilizada (Anonimizada)
 
 ```sql
 SELECT
-    Preventas."Numero", Preventas."Fecha", Preventas."UsadoID", Preventas."PrecioVenta", Preventas."Anulada", Preventas."Modelo", Preventas."Financiacion_Importe",
-    Clientes."Nombre", Clientes."Direccion", Clientes."Localidad", Clientes."Provincia", Clientes."CUIT_CUIL", Clientes."DNI", Clientes."FechaDeNacim",
-    SucursalesDeventa."Nombre" AS "SucursalVenta",
-    Vendedores."Nombre" AS "NombreVendedor", Vendedores."Jefe", Vendedores."Activo",
-    Usados."Patente" AS "PatenteUsado", Usados."Nombre" AS "NombreUsado", Usados."Marca" AS "MarcaUsado",
-    Unidades."Patente" AS "PatenteUnidad", Unidades."FechaAsignacion", Unidades."Facturada", Unidades."FechaPatentamiento", Unidades."Carroceria",
-    Modelos."DescripcionOperativa" AS "ModeloOperativo",
-    SaldosPorReferencia."SumaDeSumaDeSaldo",
-    TipoVenta."Descripcion" AS "TipoDeVenta",
-    Usados_1."Color", Usados_1."Anio", Usados_1."Patente" AS "PatenteUsado2", Usados_1."PrecioDeToma", Usados_1."Marca" AS "MarcaUsado2", Usados_1."Modelo" AS "ModeloUsado2",
-    Ubicaciones."Descripcion" AS "UbicacionEntrega", Ubicaciones."Direccion" AS "DireccionEntrega", Ubicaciones."Localidad" AS "LocalidadEntrega", Ubicaciones."CodPost" AS "CodPostEntrega", Ubicaciones."Provincia" AS "ProvinciaEntrega",
-    EntidadesBancarias."Nombre" AS "BancoFinanciacion",
-    CondicionesIVA."Nombre" AS "CondicionIVACliente",
-    Familias."Nombre" AS "FamiliaModelo"
+    Operaciones."ID_Operacion", Operaciones."Fecha_Operacion", Operaciones."ID_Vehiculo_Usado", Operaciones."Precio_Venta", Operaciones."Estado_Anulada", Operaciones."ID_Modelo_Vehiculo", Operaciones."Monto_Financiacion",
+    Compradores."Nombre_Completo", Compradores."Direccion", Compradores."Ciudad", Compradores."Provincia", Compradores."ID_Fiscal", Compradores."Numero_Identificacion", Compradores."Fecha_Nacimiento",
+    PuntosDeVenta."Nombre_Punto",
+    AsesoresVenta."Nombre_Asesor", AsesoresVenta."Jefe_Directo", AsesoresVenta."Activo",
+    VehiculosUsados."Matricula", VehiculosUsados."Nombre_Vehiculo", VehiculosUsados."Marca_Vehiculo",
+    UnidadesInventario."Matricula", UnidadesInventario."Fecha_Asignacion", UnidadesInventario."Facturada", UnidadesInventario."Fecha_Registro_Patente", UnidadesInventario."Tipo_Carroceria",
+    DefinicionModelos."Descripcion_Operativa",
+    SaldosTransaccion."Monto_Saldo_Total",
+    TiposVenta."Descripcion_Tipo",
+    DetalleUsados."Color_Vehiculo", DetalleUsados."Anio_Modelo", DetalleUsados."Matricula" AS "MatriculaUsado2", DetalleUsados."Precio_Toma", DetalleUsados."Marca_Vehiculo" AS "MarcaUsado2", DetalleUsados."ID_Modelo_Vehiculo" AS "ModeloUsado2",
+    LugaresEntrega."Descripcion_Lugar", LugaresEntrega."Direccion", LugaresEntrega."Ciudad", LugaresEntrega."Codigo_Postal", LugaresEntrega."Provincia",
+    BancosFinanciadores."Nombre_Banco",
+    CondicionesFiscales."Nombre_Condicion",
+    ClasificacionesVehiculos."Nombre_Clasificacion"
 FROM
-    { oj ((((((((((((("Preventas" Preventas LEFT OUTER JOIN "SucursalesDeventa" SucursalesDeventa ON Preventas."Sucursal" = SucursalesDeventa."Numero")
-    LEFT OUTER JOIN "Vendedores" Vendedores ON Preventas."VendedorID" = Vendedores."VendedorId")
-    LEFT OUTER JOIN "Usados" Usados ON Preventas."UsadoID" = Usados."UsadoID")
-    LEFT OUTER JOIN "Unidades" Unidades ON Preventas."UnidadID" = Unidades."UnidadID")
-    LEFT OUTER JOIN "Modelos" Modelos ON Preventas."Modelo" = Modelos."Modelo")
-    LEFT OUTER JOIN "SaldosPorReferencia" SaldosPorReferencia ON Preventas."Numero" = SaldosPorReferencia."Referencia")
-    LEFT OUTER JOIN "TipoVenta" TipoVenta ON Preventas."TipoDeVentaID" = TipoVenta."TipoVentaID")
-    LEFT OUTER JOIN "SAI"."dbo"."Usados" Usados_1 ON Preventas."Numero" = Usados_1."PreVentaOrigen")
-    LEFT OUTER JOIN "SAI"."dbo"."Financiaciones" Financiaciones ON Preventas."FinanciacionID" = Financiaciones."FinanciacionID")
-    LEFT OUTER JOIN "SAI"."dbo"."Ubicaciones" Ubicaciones ON Preventas."UbicacionEntregaID" = Ubicaciones."UbicacionID")
-    LEFT OUTER JOIN "Clientes" Clientes ON Preventas."Cliente" = Clientes."Codigo")
-    LEFT OUTER JOIN "SAI"."dbo"."CondicionesIVA" CondicionesIVA ON Clientes."TipoDeIVA" = CondicionesIVA."TipoDeIVAID")
-    LEFT OUTER JOIN "SAI"."dbo"."Familias" Familias ON Modelos."Familia" = Familias."FamiliaID")
-    LEFT OUTER JOIN "SAI"."dbo"."EntidadesBancarias" EntidadesBancarias ON Financiaciones."BancoID" = EntidadesBancarias."BancoID"}
+    { oj ((((((((((((("OperacionesDeVenta" Operaciones LEFT OUTER JOIN "PuntosDeVenta" PuntosDeVenta ON
+    Operaciones."ID_Punto_Venta" = PuntosDeVenta."ID_Punto")
+    LEFT OUTER JOIN "AsesoresVenta" AsesoresVenta ON
+    Operaciones."ID_Asesor" = AsesoresVenta."ID_Asesor")
+    LEFT OUTER JOIN "VehiculosUsados" VehiculosUsados ON
+    Operaciones."ID_Vehiculo_Usado" = VehiculosUsados."ID_Vehiculo")
+    LEFT OUTER JOIN "UnidadesInventario" UnidadesInventario ON
+    Operaciones."ID_Unidad_Inventario" = UnidadesInventario."ID_Unidad")
+    LEFT OUTER JOIN "DefinicionModelos" DefinicionModelos ON
+    Operaciones."ID_Modelo_Vehiculo" = DefinicionModelos."ID_Modelo")
+    LEFT OUTER JOIN "SaldosTransaccion" SaldosTransaccion ON
+    Operaciones."ID_Operacion" = SaldosTransaccion."ID_Referencia")
+    LEFT OUTER JOIN "TiposVenta" TiposVenta ON
+    Operaciones."ID_Tipo_Venta" = TiposVenta."ID_Tipo")
+    LEFT OUTER JOIN "BaseDeDatosAux"."dbo"."DetalleUsados" DetalleUsados ON
+    Operaciones."ID_Operacion" = DetalleUsados."ID_Origen_PreVenta")
+    LEFT OUTER JOIN "BaseDeDatosAux"."dbo"."Financiaciones" Financiaciones ON
+    Operaciones."ID_Financiacion" = Financiaciones."ID_Financiacion")
+    LEFT OUTER JOIN "BaseDeDatosAux"."dbo"."LugaresEntrega" LugaresEntrega ON
+    Operaciones."ID_Ubicacion_Entrega" = LugaresEntrega."ID_Ubicacion")
+    LEFT OUTER JOIN "Compradores" Compradores ON
+    Operaciones."ID_Comprador" = Compradores."ID_Comprador")
+    LEFT OUTER JOIN "BaseDeDatosAux"."dbo"."CondicionesFiscales" CondicionesFiscales ON
+    Compradores."ID_Tipo_Fiscal" = CondicionesFiscales."ID_Tipo_Fiscal")
+    LEFT OUTER JOIN "BaseDeDatosAux"."dbo"."ClasificacionesVehiculos" ClasificacionesVehiculos ON
+    DefinicionModelos."ID_Clasificacion" = ClasificacionesVehiculos."ID_Clasificacion")
+    LEFT OUTER JOIN "BaseDeDatosAux"."dbo"."BancosFinanciadores" BancosFinanciadores ON
+    Financiaciones."ID_Banco" = BancosFinanciadores."ID_Banco"}
 WHERE
-    Preventas."Fecha" >= {ts '2022-01-01 00:00:00.00'} AND
-    Preventas."Fecha" < {ts '2030-11-10 00:00:00.00'} AND
-    Preventas."Anulada" = 0;
+    Operaciones."Fecha_Operacion" >= {ts '2022-01-01 00:00:00.00'} AND
+    Operaciones."Fecha_Operacion" < {ts '2030-11-10 00:00:00.00'} AND
+    Operaciones."Estado_Anulada" = 0;
 

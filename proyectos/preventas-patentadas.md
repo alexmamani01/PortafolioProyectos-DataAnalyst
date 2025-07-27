@@ -33,32 +33,40 @@ Este proyecto proporcionó a los equipos de ventas y gerencia una visibilidad cr
 
 ---
 
-## 💻 Consulta SQL Utilizada
+## 💻 Consulta SQL Utilizada (Anonimizada)
 
 ```sql
 SELECT
-    Unidades."VIN", Unidades."IDFabrica", Unidades."Patente" AS "PatenteUnidad", Unidades."Entregada", Unidades."Facturada" AS "UnidadFacturada", Unidades."FechaPatentamiento",
-    Preventas."Numero" AS "NumeroPreventa", Preventas."Fecha" AS "FechaPreventa",
-    Modelos."DescripcionOperativa" AS "ModeloOperativo",
-    Origenes."Nombre" AS "OrigenModelo",
-    TipoVenta."Descripcion" AS "TipoDeVenta",
-    Vendedores."Nombre" AS "NombreVendedor", Vendedores."Jefe",
-    SucursalesDeventa."Nombre" AS "SucursalVenta",
-    Clientes."Nombre" AS "NombreCliente", Clientes."Localidad", Clientes."Provincia", Clientes."Direccion", Clientes."DNI", Clientes."FechaDeNacim",
-    Familias."Nombre" AS "FamiliaModelo"
+    UnidadesVehiculo."Numero_VIN", UnidadesVehiculo."ID_Fabricante", UnidadesVehiculo."Matricula", UnidadesVehiculo."Estado_Entregada", UnidadesVehiculo."Estado_Facturada", UnidadesVehiculo."Fecha_Patentamiento",
+    OperacionesVenta."ID_Operacion", OperacionesVenta."Fecha_Operacion",
+    ModelosVehiculo."Descripcion_Operativa",
+    FuentesOrigenModelo."Nombre_Origen",
+    TiposTransaccion."Descripcion_Tipo",
+    AsesoresComerciales."Nombre_Asesor", AsesoresComerciales."Rol_Jefe",
+    PuntosDeVenta."Nombre_Punto",
+    ClientesMaestro."Nombre_Completo", ClientesMaestro."Localidad", ClientesMaestro."Provincia", ClientesMaestro."Direccion", ClientesMaestro."Numero_Identificacion", ClientesMaestro."Fecha_Nacimiento",
+    CategoriasVehiculo."Nombre_Categoria"
 FROM
-    { oj ((((((("Unidades" Unidades LEFT OUTER JOIN "Modelos" Modelos ON Unidades."Modelo" = Modelos."Modelo")
-    LEFT OUTER JOIN "Preventas" Preventas ON Unidades."Preventa" = Preventas."Numero")
-    LEFT OUTER JOIN "TipoVenta" TipoVenta ON Preventas."TipoDeVentaID" = TipoVenta."TipoDeVentaID")
-    LEFT OUTER JOIN "SAI"."dbo"."Vendedores" Vendedores ON Preventas."VendedorID" = Vendedores."VendedorId")
-    LEFT OUTER JOIN "SAI"."dbo"."SucursalesDeventa" SucursalesDeventa ON Preventas."Sucursal" = SucursalesDeventa."Numero")
-    LEFT OUTER JOIN "Clientes" Clientes ON Preventas."Cliente" = Clientes."Codigo")
-    LEFT OUTER JOIN "SAI"."dbo"."Familias" Familias ON Modelos."Familia" = Familias."FamiliaID")
-    LEFT OUTER JOIN "Origenes" Origenes ON Modelos."Origen" = Origenes."OrigenID"}
--- Considerar añadir una cláusula WHERE si se necesita filtrar por fecha u otros criterios relevantes para el análisis.
+    { oj ((((((("UnidadesVehiculo" UnidadesVehiculo LEFT OUTER JOIN "ModelosVehiculo" ModelosVehiculo ON
+    UnidadesVehiculo."ID_Modelo" = ModelosVehiculo."ID_Modelo")
+    LEFT OUTER JOIN "OperacionesVenta" OperacionesVenta ON
+    UnidadesVehiculo."ID_Operacion" = OperacionesVenta."ID_Operacion")
+    LEFT OUTER JOIN "TiposTransaccion" TiposTransaccion ON
+    OperacionesVenta."ID_Tipo_Transaccion" = TiposTransaccion."ID_Tipo")
+    LEFT OUTER JOIN "DB_Principal"."dbo"."AsesoresComerciales" AsesoresComerciales ON
+    OperacionesVenta."ID_Asesor" = AsesoresComerciales."ID_Asesor")
+    LEFT OUTER JOIN "DB_Principal"."dbo"."PuntosDeVenta" PuntosDeVenta ON
+    OperacionesVenta."ID_Punto_Venta" = PuntosDeVenta."ID_Punto")
+    LEFT OUTER JOIN "ClientesMaestro" ClientesMaestro ON
+    OperacionesVenta."ID_Cliente" = ClientesMaestro."ID_Cliente")
+    LEFT OUTER JOIN "DB_Principal"."dbo"."CategoriasVehiculo" CategoriasVehiculo ON
+    ModelosVehiculo."ID_Categoria" = CategoriasVehiculo."ID_Categoria")
+    LEFT OUTER JOIN "FuentesOrigenModelo" FuentesOrigenModelo ON
+    ModelosVehiculo."ID_Origen" = FuentesOrigenModelo."ID_Origen"}
+```
 ---
 
-📐Medidas DAX Utilizadas
+## 📐Medidas DAX Utilizadas
 Fragmento de código
 
 // Promedio de Edad de Clientes de Preventas (entre 25 y 65 años)
