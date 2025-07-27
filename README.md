@@ -23,7 +23,8 @@ Aquí puedes encontrar la documentación detallada de cada proyecto:
 
 * [**Gestión de Canal Secundario**](proyectos/gestion_canal_secundario.md)
 * [**Informe de Boletos de Venta de Preventas y Variación de Ventas**](proyectos/ventas_preventas_variacion.md)
-* [**Preventas Patentadas y Análisis de Perfil de Cliente**](proyectos/preventas_patentadas.md)
-* [**Reporte Evolutivo de Gestión (Performance de Call Center)**](proyectos/reporte_evolutivo_gestion.md)
+* [**Preventas Patentadas y Análisis de Perfil de Cliente**](proyectos/preventas-patentadas.md)
+* [**Reporte Evolutivo de Gestión (Performance de Call Center)**](proyectos/reporte-evolutivo-gestion.md)
+* [**Reporte de Postventa**](proyectos/reporte-postventa.md)
 
 ---
